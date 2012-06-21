@@ -1,13 +1,14 @@
 # robot
 
-FIXME: write description
+Backing service for the robot exercise
 
 ## Usage
 
-FIXME: write
+lein deps
+lein ring start (starts the server on port 3000)
 
 ## License
 
-Copyright (C) 2012 FIXME
+Copyright (C) 2012 Ben Griffiths
 
 Distributed under the Eclipse Public License, the same as Clojure.
