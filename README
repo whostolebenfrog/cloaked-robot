@@ -5,7 +5,7 @@ Backing service for the robot exercise
 ## Usage
 
 lein deps
-lein ring start (starts the server on port 3000)
+lein ring server (starts the server on port 3000)
 
 ## License
 
