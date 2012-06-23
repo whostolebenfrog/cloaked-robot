@@ -9,28 +9,19 @@
 ;; custom encoder for the mongo id type
 (add-encoder org.bson.types.ObjectId encode-str)
 
-(defn split-mongo-url [url]
-  "split heroku mongo string into parts (mongodb://user:pass@localhost:1234/db)"
-  (let [matcher (re-matcher #"^.*://(.*?):(.*?)@(.*?):(\d+)/(.*)$" url)]
-    (zipmap [:match :user :pass :host :port :db] (re-find matcher))))
-
 (defn get-mongo-url []
   (if (blank? (System/getProperty "MONGOHQ_URL"))
-    "mongodb://user:pass@localhost:27017/robot"
+    "mongodb://localhost:27017/robot"
     (System/getProperty "MONGOHQ_URL")))
 
 ;; inits mongo with either the MONGOHQ_URL system property or
 ;; the default mongo port on localhost
 (defn init-mongo []
   "Initialise mongo using url from system property"
-  (let [params (split-mongo-url (get-mongo-url))]
-    (do
-      (def conn
-        (make-connection
-         (:db params)
-         :host (:host params)
-         :port (Integer. (:port params))))
-      (set-connection! conn))))
+  (do
+    (def conn
+      (make-connection :uri get-mongo-url))
+    (set-connection! conn)))
 
 (defn store [moves]
   (insert! :moves moves))
