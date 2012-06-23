@@ -4,5 +4,6 @@
                  [compojure "1.1.0"]
                  [cheshire "4.0.0"]]
   :plugins [[lein-ring "0.7.1"]
+            [jonase/kibit "0.0.4"]
             [lein-swank "1.4.4"]]
   :ring {:handler robot.core/app})
