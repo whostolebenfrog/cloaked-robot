@@ -22,7 +22,6 @@
   "Initialise mongo using url from system property"
   (let [params (split-mongo-url (get-mongo-url))]
     (do
-      (prn params)
       (def conn
         (make-connection
          (:db params)
@@ -54,7 +53,7 @@
   (PUT "/users/:id/moves" [id :as req]
     (do
       (store (with-user id (parse-string (slurp (req :body)))))
-      (str "OK: " id)))
+      (generate-string {:response "ok" :id id})))
   (ben/resources "/")
   (ben/not-found "Page not found"))
 
