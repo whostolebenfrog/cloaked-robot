@@ -7,6 +7,10 @@ Backing service for the robot exercise
 lein deps
 lein ring server (starts the server on port 3000)
 
+## Heroku
+
+foreman (launches on port 5000)
+
 ## License
 
 Copyright (C) 2012 Ben Griffiths
