@@ -3,4 +3,4 @@
 (defn -main [& args]
   (do
     (prn "Printing system property")
-    (prn (System/getProperty "MONGOHQ_URL"))))
+    (prn (System/getenv "MONGOHQ_URL"))))
