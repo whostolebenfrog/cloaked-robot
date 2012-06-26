@@ -14,9 +14,7 @@
     (zipmap [:match :user :pass :host :port :db] (re-find matcher))))
 
 (defn get-mongo-url []
-  (if (blank? (System/getProperty "MONGOHQ_URL"))
-    "mongodb://:@localhost:27017/robot"
-    (System/getProperty "MONGOHQ_URL")))
+  (or (System/getProperty "MONGOHQ_URL") "mongodb://:@localhost:27107/robot"))
 
 (defn init-mongo []
   "Initialise mongo using url from system property"
