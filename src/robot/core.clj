@@ -28,7 +28,7 @@
       (when (and
              (not (blank? (:pass params)))
              (not (blank? (:user params))))
-        (authenticate conn (:user params) (:pass (params))))
+        (authenticate conn (:user params) (:pass params)))
       (set-connection! conn))))
 
 (defn store [moves]
