@@ -1,0 +1,14 @@
+/* robot app css */
+
+.prepend-top {margin-top: 1em;}
+.hide {display: none}
+
+.square-cell tr td {width: 60px; height: 60px; padding: 0px; border-spacing: 0px; border-bottom: 1px solid #DDD;}
+.selected {background-color: #FFFFB5;}
+
+.board-wall {background-color: #888888;}
+.board-empty {background-color: #ffffff;}
+.board-goal {background: #ffffff url('../img/goal.png') no-repeat center; background-size: 50%;}
+.board-robot {background: #ffffff url('../img/robot.png') no-repeat center; background-size: 70%;}
+
+.cell-image {width: 80%; height: 80%; padding-left: 5px;}

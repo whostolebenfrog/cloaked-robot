@@ -3,7 +3,7 @@
         [cheshire.custom]
         [somnium.congomongo]
         [clojure.string :only (blank?)])
-  (:require [compojure.route :as ben]
+  (:require [compojure.route :as routes]
             [compojure.handler :as handler]))
 
 (add-encoder org.bson.types.ObjectId encode-str)
@@ -32,13 +32,15 @@
       (set-connection! conn))))
 
 (defn store [moves]
-  (insert! :moves moves))
+  (do
+    (prn moves)
+    (insert! :moves moves)))
 
 (defn retrieve
   ([id]
-     (generate-string (fetch :moves :where {:user id} :sort {:move -1} :limit 1)))
+     (generate-string (fetch :moves :where {:user id} :sort {:seq -1} :limit 1)))
   ([id move]
-     (generate-string (fetch-one :moves :where {:user id :move move}))))
+     (generate-string (fetch-one :moves :where {:user id :seq move}))))
 
 (defn with-user [id moves]
   (assoc moves :user id))
@@ -52,8 +54,8 @@
     (do
       (store (with-user id (parse-string (slurp (req :body)))))
       (generate-string {:response "ok" :id id})))
-  (ben/resources "/")
-  (ben/not-found "Page not found"))
+  (routes/resources "/")
+  (routes/not-found "Page not found"))
 
 (init-mongo)
 

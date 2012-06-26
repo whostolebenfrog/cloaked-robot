@@ -1,0 +1,63 @@
+<div class="container">
+    <h2>Robot Game</h2>
+
+    <div class="span9">
+        <div class="span4">
+            <table class="square-cell table-bordered">
+                <tr ng-repeat="row in map">
+                    <td ng-repeat="cell in row" class="board-{{cell}}"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="span4">
+            <table class="table-bordered square-cell function">
+                <tr>
+                    <td>
+                        <img src="img/f1.png" class="cell-image">
+                    </td>
+                    <td ng-repeat="move in f1" ng-click="selectNode(move)" ng-class="(move == selected) && 'selected'">
+                        <img ng-src="img/{{move.command}}.png" class="cell-image" ng-class="(move.command == '') && 'hide'" />
+                    </td>
+                </tr>
+            </table>
+
+            <table class="prepend-top table-bordered square-cell function">
+                <tr>
+                    <td>
+                        <img src="img/f2.png" class="cell-image">
+                    </td>
+                    <td ng-repeat="move in f2" ng-click="selectNode(move)" ng-class="(move == selected) && 'selected'">
+                        <img ng-src="img/{{move.command}}.png" class="cell-image" ng-class="(move.command == '') && 'hide'" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="span7 prepend-top">
+            <input type="button" value="evaluate" name="evaluate" id="evaluate" class="btn btn-success" ng-click="evaluate()">
+        </div>
+
+        <div class="span8">
+            <h3>Moves</h3>
+            <table class="table-bordered square-cell moves">
+                <tr>
+                    <td ng-repeat="move in moves" ng-click="selectNode(move)" ng-class="(move == selected) && 'selected'">
+                        <img ng-src="img/{{move.command}}.png" class="cell-image" ng-class="(move.command == '') && 'hide'" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="span2">
+        <table class="table-bordered square-cell function">
+            <tr ng-repeat="command in commands" ng-click="setCommand(command)">
+                <td>
+                    <img ng-src="img/{{command.code}}.png" class="cell-image" ng-class="(move.command == '') && 'hide'" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
