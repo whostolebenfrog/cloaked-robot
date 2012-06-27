@@ -14,7 +14,7 @@
     (zipmap [:match :user :pass :host :port :db] (re-find matcher))))
 
 (defn get-mongo-url []
-  (or (System/getenv "MONGOHQ_URL") "mongodb://:@localhost:27107/robot"))
+  (or (System/getenv "MONGOHQ_URL") "mongodb://:@localhost:27017/robot"))
 
 (defn init-mongo []
   "Initialise mongo using url from system property"
@@ -58,6 +58,8 @@
   (routes/not-found "Page not found"))
 
 (init-mongo)
+
+(insert! :test {:test "test"})
 
 (def app
   (handler/site main-routes))
