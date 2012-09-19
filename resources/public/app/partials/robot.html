@@ -34,8 +34,9 @@
             </table>
         </div>
         <div class="span7 prepend-top">
-            <input type="button" value="load" name="load" id="load" class="btn btn-success" ng-click="reload()">
-            <input type="button" value="evaluate" name="evaluate" id="evaluate" class="btn btn-success" ng-click="evaluate()">
+            <input type="button" value="load" name="load" id="load" class="{{idkfa() && 'hide'}} btn btn-success" ng-click="reload()">
+            <input type="button" value="evaluate" name="evaluate" id="evaluate" class="{{idkfa() && 'hide'}} btn btn-success" ng-click="evaluate()">
+            <input type="button" value="reset" name="reset" id="reset" class="btn btn-warning" ng-click="reset()">
         </div>
 
         <div class="span8">
@@ -61,4 +62,3 @@
     </div>
 
 </div>
-

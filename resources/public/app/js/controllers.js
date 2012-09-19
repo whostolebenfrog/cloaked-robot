@@ -12,7 +12,7 @@
 // TODO: fail and win message
 // TODO: clear
 // TODO: undo stack
-function RobotCtrl($scope, $document, store) {
+function RobotCtrl($scope, $document, store, $routeParams) {
     var MAX_X = 5;
     var MAX_Y = 3;
 
@@ -88,6 +88,15 @@ function RobotCtrl($scope, $document, store) {
 
     $scope.reload = function() {
         $scope.moves = store.read($scope);
+    };
+
+    $scope.idkfa = function() {
+        return $routeParams.godmode != "idgod";
+    };
+
+    $scope.reset = function() {
+        init();
+        store.write(movesToJson($scope.moves));
     };
 
     function appendToMoveQueue(moveQueue, funQueue) {
