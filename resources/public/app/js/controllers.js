@@ -86,6 +86,10 @@ function RobotCtrl($scope, $document, store) {
         $scope.map[robot.y][robot.x] = 'robot';    
     };
 
+    $scope.reload = function() {
+        $scope.moves = store.read($scope);
+    };
+
     function appendToMoveQueue(moveQueue, funQueue) {
         _.each(funQueue.slice(0).reverse(), function(move) {
             moveQueue.unshift(move);
@@ -150,7 +154,9 @@ function RobotCtrl($scope, $document, store) {
     function movesToJson(moves) {
         return {
             seq : $scope.seq,
-            moves : $scope.moves
+            moves : $scope.moves,
+            f1 : $scope.f1,
+            f2 : $scope.f2
         };
     }
 

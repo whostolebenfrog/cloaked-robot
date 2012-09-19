@@ -10,10 +10,17 @@ angular.module('robot.services', []).
 angular.module('robot.services', []).factory('store', function($http) {
     return {
         write : function(moves) {
-                    console.log(moves);
                     $http.put('/users/test/moves', moves).success(function(data) {
                     }).error(function(data) {
                     });
-                }
+                },
+        read : function(scope) {
+                   $http.get('/users/test/moves/last').success(function(data) {
+                       scope.moves = data[0].moves;
+                       scope.f1 = data[0].f1;
+                       scope.f2 = data[0].f2;
+                   }).error(function(data) {
+                   });
+               }
     }
 });

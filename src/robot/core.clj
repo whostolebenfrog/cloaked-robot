@@ -32,24 +32,18 @@
       (set-connection! conn))))
 
 (defn store [moves]
-  (do
-    (prn moves)
-    (insert! :moves moves)))
+  (insert! :moves moves))
 
 (defn retrieve
   ([id]
-     (generate-string (fetch :moves :where {:user id} :sort {:seq -1} :limit 1)))
-  ([id move]
-     (generate-string (fetch-one :moves :where {:user id :seq move}))))
+     (generate-string (fetch :moves :where {:user id} :sort {:date -1} :limit 1))))
 
 (defn with-user [id moves]
-  (assoc moves :user id))
+  (assoc moves :user id :date (java.util.Date.)))
 
 (defroutes main-routes
   (GET "/users/:id/moves/last" [id]
     (retrieve id))
-  (GET "/users/:id/moves/:move" [id move]
-    (retrieve id (Integer. move)))
   (PUT "/users/:id/moves" [id :as req]
     (do
       (store (with-user id (parse-string (slurp (req :body)))))
