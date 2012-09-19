@@ -8,3 +8,4 @@ pom.xml
 /.lein-plugins
 /checkouts
 /.target/*
+*.swp
