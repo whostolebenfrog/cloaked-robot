@@ -15,7 +15,7 @@ angular.module('robot.services', []).factory('store', function($http) {
                     });
                 },
         read : function(scope) {
-                   $http.get('/users/test/moves/last').success(function(data) {
+                   $http.get('/users/test/moves/last', headers: {'Cache-Control' : 'no-store'}).success(function(data) {
                        scope.moves = data[0].moves;
                        scope.f1 = data[0].f1;
                        scope.f2 = data[0].f2;
